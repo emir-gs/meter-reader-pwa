@@ -6,7 +6,6 @@ import { ReadComponent } from './read/read.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 
-import { environment } from './../environments/environment.prod';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
@@ -22,7 +21,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatCardModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatRadioModule, MatSelectModule, MatSnackBarModule, MatTableModule } from '@angular/material';
+import {
+  MatCardModule,
+  MatExpansionModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatRadioModule,
+  MatSelectModule,
+  MatSnackBarModule,
+  MatTableModule
+} from '@angular/material';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -58,7 +68,8 @@ import { MatCardModule, MatExpansionModule, MatFormFieldModule, MatInputModule, 
     MatTableModule,
     MatCardModule,
     MatIconModule,
-    MatExpansionModule
+    MatExpansionModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

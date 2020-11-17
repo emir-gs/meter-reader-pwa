@@ -52,7 +52,8 @@ import { MatCardModule, MatFormFieldModule, MatInputModule, MatRadioModule, MatS
     MatInputModule,
     MatRadioModule,
     MatTableModule,
-    MatCardModule
+    MatCardModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

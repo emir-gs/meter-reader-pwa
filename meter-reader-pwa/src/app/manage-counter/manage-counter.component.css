@@ -1,0 +1,27 @@
+.flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.flex-row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+h1{
+  font-weight: lighter;
+}
+.form{
+  width: 100%;
+}
+.space *{
+  margin: 10px;
+}
+table
+{
+  width: 90%;
+  margin: 5%;
+}
+

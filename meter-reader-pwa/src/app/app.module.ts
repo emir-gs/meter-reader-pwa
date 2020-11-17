@@ -1,3 +1,4 @@
+import { ManageCounterComponent } from './manage-counter/manage-counter.component';
 import { environment } from './../environments/environment.prod';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -17,7 +18,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule, MatInputModule, MatSelectModule, MatSnackBarModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatRadioModule, MatSelectModule, MatSnackBarModule, MatTableModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     NavComponent,
     HomeComponent,
-    ReadComponent
+    ReadComponent,
+    ManageCounterComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSnackBarModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatRadioModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

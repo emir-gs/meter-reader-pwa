@@ -29,14 +29,6 @@ delete(data) {
    return this.firestore.collection('meters').doc(data.payload.doc.id).delete();
 }
 
-deleteAll() {
-  this.getAllMeters().subscribe(data => {
-    data.forEach(doc => {
-      this.delete(doc);
-    });
-  });
-}
-
 saveId(id: string) {
   const subsRef = this.firestore.firestore.collection('subs');
   subsRef.where('id', '==', id).get().then(data => {

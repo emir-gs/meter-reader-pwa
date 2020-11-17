@@ -1,0 +1,37 @@
+<div class="flex">
+  <h1>Zählerverwaltung</h1>
+</div>
+
+<div class="flex">
+    <form [formGroup]="meterForm" (ngSubmit)="onSubmitMeterForm(meterFormDirective)" class="flex space" #meterFormDirective="ngForm">
+      <mat-form-field class="input">
+        <mat-label>Zählerbezeichnung</mat-label>
+        <input type="text" matInput placeholder="Hier die Bezeichnung eingeben..." formControlName="name">
+      </mat-form-field>
+      <mat-radio-group aria-label="Zählertyp" formControlName="meterType">
+        <mat-radio-button value="1">Einzeltarif</mat-radio-button>
+        <mat-radio-button value="2">Doppeltarif</mat-radio-button>
+      </mat-radio-group>
+      <button mat-flat-button color="primary" type="submit" [disabled]="meterForm.invalid">Hinzufügen</button>
+    </form>
+</div>
+
+
+<table mat-table [dataSource]="meter" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Zählername </th>
+    <td mat-cell *matCellDef="let element"> {{element.payload.doc.data().name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Action </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-flat-button color="warn" type="button" (click)="deleteMeter(element)">Löschen</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+

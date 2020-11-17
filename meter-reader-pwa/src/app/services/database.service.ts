@@ -1,13 +1,14 @@
 import { Meter } from './../models/meter.model';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatabaseService {
 
-  constructor( private firestore: AngularFirestore) {}
+  constructor( private firestore: AngularFirestore, private storage: AngularFireStorage) {}
 
 createMeter(meter: Meter) {
   return this.firestore.collection('meters').add(meter);
@@ -37,6 +38,12 @@ saveId(id: string) {
       subsRef.add({id});
     }
   });
+}
+
+saveImage(blob: Blob, meterName: string) {
+  const dateStamp = new Date().toISOString();
+  const filePath = meterName + '/' + dateStamp;
+  this.storage.upload(filePath, blob).then(data => console.log, err => console.log(err));
 }
 
 }

@@ -1,0 +1,27 @@
+<mat-accordion>
+  <mat-expansion-panel hideToggle #shootPhoto="matExpansionPanel">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Belegfoto schießen
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="flex">
+      <video #video autoplay id="video"></video>
+      <canvas #canvas class="vid" id="canvas"></canvas>
+    </div>
+    <div class="flex-row">
+      <button mat-stroked-button color="primary" type="button" (click)="startCamera()">Start</button>
+      <button mat-raised-button color="primary" type="button" (click)="capture()">Capture</button>
+      <button mat-stroked-button color="warn" type="button" (click)="stopCamera()">Stop</button>
+    </div>
+  </mat-expansion-panel>
+  <mat-expansion-panel hideToggle #loadPhoto="matExpansionPanel">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Belegfoto hochladen
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <input type="file" accept="image/png, image/jpeg" id="photoUpload" (change)="fileUploaded()">
+  </mat-expansion-panel>
+</mat-accordion>
+

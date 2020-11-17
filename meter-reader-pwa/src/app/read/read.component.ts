@@ -1,7 +1,8 @@
 import { DatabaseService } from './../services/database.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup , FormBuilder, Validators, FormGroupDirective} from '@angular/forms';
 import {  MatSnackBar } from '@angular/material';
+import { CameraComponent } from '../camera/camera.component';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class ReadComponent implements OnInit {
   meter;
   showMeterForm = false;
   showSecondCount = false;
+  @ViewChild(CameraComponent, {static: false}) cameraComponent: CameraComponent;
 
   constructor(private databaseService: DatabaseService, private formBuilder: FormBuilder, private snackBar: MatSnackBar) { }
 
@@ -56,6 +58,14 @@ export class ReadComponent implements OnInit {
       });
     }
 
+    if (this.cameraComponent.isPhotoShot) {
+      this.saveImageShot(meter.payload.doc.data().name);
+    } else {
+      if (this.cameraComponent.isPhotoUploaded) {
+        this.saveImageLoaded(meter.payload.doc.data().name);
+      }
+    }
+
     this.databaseService.
       updateReads(meter, {reads: newReads} ).catch(err => console.error(err));
 
@@ -74,5 +84,14 @@ export class ReadComponent implements OnInit {
       this.showSecondCount = true;
     }
 
+  }
+
+  saveImageShot(name: string) {
+    let canvas = document.getElementById('canvas') as HTMLCanvasElement;
+    canvas.toBlob(blob => this.databaseService.saveImage(blob, name));
+  }
+
+  saveImageLoaded(name: string) {
+    this.databaseService.saveImage(this.cameraComponent.getUploadedFile(), name);
   }
 }

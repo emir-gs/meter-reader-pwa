@@ -1,3 +1,5 @@
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { CameraComponent } from './camera/camera.component';
 import { HistoryComponent } from './history/history.component';
 import { ManageCounterComponent } from './manage-counter/manage-counter.component';
 import { ReadComponent } from './read/read.component';
@@ -20,7 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatCardModule, MatFormFieldModule, MatInputModule, MatRadioModule, MatSelectModule, MatSnackBarModule, MatTableModule } from '@angular/material';
+import { MatCardModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatRadioModule, MatSelectModule, MatSnackBarModule, MatTableModule } from '@angular/material';
 
 
 @NgModule({
@@ -30,7 +32,8 @@ import { MatCardModule, MatFormFieldModule, MatInputModule, MatRadioModule, MatS
     HomeComponent,
     ReadComponent,
     ManageCounterComponent,
-    HistoryComponent
+    HistoryComponent,
+    CameraComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +43,7 @@ import { MatCardModule, MatFormFieldModule, MatInputModule, MatRadioModule, MatS
 
     AngularFireModule.initializeApp(environment.firebaseConfig, 'PWA'),
     AngularFirestoreModule.enablePersistence(),
+    AngularFireStorageModule,
 
     MatSidenavModule,
     MatToolbarModule,
@@ -53,7 +57,8 @@ import { MatCardModule, MatFormFieldModule, MatInputModule, MatRadioModule, MatS
     MatRadioModule,
     MatTableModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

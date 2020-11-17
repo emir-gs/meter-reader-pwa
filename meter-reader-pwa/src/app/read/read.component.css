@@ -1,0 +1,24 @@
+.flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.flex-row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.full-width {
+  width: 50%;
+}
+form{
+  width: 100%;
+}
+h1{
+  font-weight: lighter;
+}
+app-camera{
+  width: 100%;
+}

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "meter-reader-pwa": {
+      "hosting": {
+        "meter-reader-pwa": [
+          "meter-reader-pwa"
+        ]
+      }
+    }
+  }
+}

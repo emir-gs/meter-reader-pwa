@@ -4,7 +4,7 @@
 <div>
 
   <form [formGroup]="readerForm" (ngSubmit)="onSubmitReaderForm(meterFormDirective)" class="flex" #meterFormDirective="ngForm">
-    <mat-form-field appearance="fill" class="input">
+    <mat-form-field appearance="fill" class="full-width">
       <mat-label>Zähler auswählen...</mat-label>
       <mat-select formControlName="meter" (selectionChange)="checkToShowSecondCount()" >
         <mat-option *ngFor="let meter of meter, let i = index" [value]="meter" [title]="meter.payload.doc.data().readerNumber" >

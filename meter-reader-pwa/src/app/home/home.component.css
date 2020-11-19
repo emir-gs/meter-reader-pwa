@@ -7,4 +7,10 @@
 h1{
   font-weight: lighter;
 }
-
+p{
+  text-align: center;
+  margin: 15px;
+}
+button{
+  margin: 15px;
+}

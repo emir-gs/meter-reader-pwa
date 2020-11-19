@@ -16,16 +16,21 @@ h1{
 .form{
   width: 100%;
 }
-.space *{
-  margin: 10px;
-}
-table
-{
+table{
   width: 90%;
   margin: 5%;
 }
 .input{
   width: 100%;
+}
+mat-form-field{
+  margin: 5px;
+}
+mat-radio-button{
+  margin: 10px;
+}
+button{
+  margin: 10px;
 }
 
 

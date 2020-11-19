@@ -58,6 +58,34 @@ export class ReadComponent implements OnInit {
       });
     }
 
+    if (meter.payload.doc.data().isDoubleTariffMeter === false) {
+      if (meter.payload.doc.data().reads.length === 0
+          || meter.payload.doc.data().reads[meter.payload.doc.data().reads.length - 1].count <= this.readerForm.controls.count.value) {
+        this.databaseService.
+        updateReads(meter, {reads: newReads} ).then(() => {
+          console.log('saved');
+          this.snackBar.open('Neuer Zählerstand wurde erfasst', 'OK', {duration: 4000});
+        }).catch(err => console.error(err));
+      } else {
+         this.snackBar.open('Der neue Zählerstand muss über den alten Wert liegen',
+         meter.payload.doc.data().reads[meter.payload.doc.data().reads.length - 1].count, {duration: 6000});
+      }
+    } else {
+      if ( meter.payload.doc.data().reads.length === 0
+          || meter.payload.doc.data().reads[meter.payload.doc.data().reads.length - 1].count <= this.readerForm.controls.count.value
+          && meter.payload.doc.data().reads[meter.payload.doc.data().reads.length - 1].secondCount <= this.readerForm.controls.secondCount.value) {
+        this.databaseService.
+        updateReads(meter, {reads: newReads} ).then(() => {
+          console.log('saved');
+          this.snackBar.open('Neue Zählerstande wurden erfasst', 'OK', {duration: 4000});
+        }).catch(err => console.error(err));
+      } else {
+        this.snackBar.open('Die neuen Zählerstände müssen über den alten Werten liegen',
+        meter.payload.doc.data().reads[meter.payload.doc.data().reads.length - 1].count + '  und  '
+        + meter.payload.doc.data().reads[meter.payload.doc.data().reads.length - 1].secondCount, {duration: 6000});
+      }
+    }
+
     if (this.cameraComponent.isPhotoShot) {
       this.saveImageShot(meter.payload.doc.data().name);
     } else {
@@ -66,13 +94,8 @@ export class ReadComponent implements OnInit {
       }
     }
 
-    this.databaseService.
-      updateReads(meter, {reads: newReads} ).catch(err => console.error(err));
-
     formDirective.resetForm();
     this.readerForm.reset();
-    this.snackBar.open('Zählerstand wurde erfasst', 'Ok', {duration: 2000});
-
   }
 
   checkToShowSecondCount() {

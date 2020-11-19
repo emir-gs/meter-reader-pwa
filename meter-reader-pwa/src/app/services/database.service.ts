@@ -1,4 +1,3 @@
-import { Meter } from './../models/meter.model';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
@@ -10,7 +9,7 @@ export class DatabaseService {
 
   constructor( private firestore: AngularFirestore, private storage: AngularFireStorage) {}
 
-createMeter(meter: Meter) {
+createMeter(meter) {
   return this.firestore.collection('meters').add(meter);
 }
 

@@ -2,7 +2,6 @@ import { ViewChild } from '@angular/core';
 import { ElementRef } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormGroupDirective } from '@angular/forms';
-import { Meter } from '../models/meter.model';
 import { DatabaseService } from '../services/database.service';
 
 @Component({
@@ -24,7 +23,8 @@ export class ManageCounterComponent implements OnInit {
   ngOnInit() {
     this.meter = [];
     this.meterForm = this.formBuilder.group({
-      name: ['', Validators.required],
+      name: ['', []],
+      readerNumber: ['', [Validators.required]],
       meterType: [1, Validators.required],
     });
 
@@ -38,12 +38,17 @@ export class ManageCounterComponent implements OnInit {
     if (this.meterForm.controls.meterType.value === '2') {
       isDoubleTariffMeter = true;
     }
-    this.databaseService.createMeter({name: this.meterForm.controls.name.value, isDoubleTariffMeter, reads: []});
+    this.databaseService.createMeter({
+      name: this.meterForm.controls.name.value,
+      readerNumber: this.meterForm.controls.readerNumber.value,
+      isDoubleTariffMeter,
+      reads: []
+    });
     formDirective.resetForm();
     this.meterForm.reset();
   }
 
-  deleteMeter(meter: Meter) {
+  deleteMeter(meter) {
     this.databaseService.delete(meter);
   }
 }

@@ -4,10 +4,10 @@
 <div>
 
   <form [formGroup]="readerForm" (ngSubmit)="onSubmitReaderForm(meterFormDirective)" class="flex" #meterFormDirective="ngForm">
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="input">
       <mat-label>Zähler auswählen...</mat-label>
-      <mat-select formControlName="meter" (selectionChange)="checkToShowSecondCount()">
-        <mat-option *ngFor="let meter of meter, let i = index" [value]="meter" [title]="i" >
+      <mat-select formControlName="meter" (selectionChange)="checkToShowSecondCount()" >
+        <mat-option *ngFor="let meter of meter, let i = index" [value]="meter" [title]="meter.payload.doc.data().readerNumber" >
           {{meter.payload.doc.data().name}}
         </mat-option>
       </mat-select>
@@ -16,12 +16,14 @@
     <mat-form-field class="full-width">
       <mat-label>Zählerstand (kWh)</mat-label>
       <input type="number" matInput placeholder="Aktuellen Wert hier eingeben..." formControlName="count">
+      <mat-hint>*falls Doppeltarifzähler hier den Hochtarif angeben</mat-hint>
     </mat-form-field>
 
 
     <mat-form-field class="full-width" *ngIf="showSecondCount">
       <mat-label>Zählerstand (kWh)</mat-label>
       <input type="number" matInput placeholder="Aktuellen Wert hier eingeben..." formControlName="secondCount">
+      <mat-hint>Niedertarif</mat-hint>
     </mat-form-field>
 
     <app-camera></app-camera>
@@ -29,5 +31,4 @@
     <button mat-flat-button color="primary" type="submit" [disabled]="readerForm.invalid">Speichern</button>
   </form>
 </div>
-
 

@@ -11,8 +11,7 @@ export class HomeComponent{
 
   examplePush() {
      if (!('Notification' in window)) {
-        console.log('This browser does not support notifications.');
-        alert('This browser does not support notifications. Falled back to alert thanks to feature detection');
+        alert('Dieser Browser unterstützt leider noch keine Push-Benachrichtigungen!');
       } else {
           Notification.requestPermission()
           .then((permission) => {

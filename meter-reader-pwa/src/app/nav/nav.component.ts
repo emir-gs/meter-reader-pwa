@@ -26,7 +26,7 @@ export class NavComponent implements OnInit {
     this.connection.behaviorSubjectObservable$.subscribe(online => {
       this.online = online;
       if (!this.online) {
-        this.snackBar.open('You are offline!', '', { duration: 3000 });
+        this.snackBar.open('Offline! Die App ist weiterhin nutzbar', 'Ok', { duration: 10000});
       } else {
         this.snackBar.dismiss();
       }

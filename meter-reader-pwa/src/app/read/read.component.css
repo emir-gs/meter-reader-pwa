@@ -11,7 +11,7 @@
   flex-direction: row;
 }
 .full-width {
-  width: 50%;
+  width: 90%;
 }
 form{
   width: 100%;
@@ -20,5 +20,6 @@ h1{
   font-weight: lighter;
 }
 app-camera{
-  width: 100%;
+  width: 90%;
+  margin: 5%;
 }

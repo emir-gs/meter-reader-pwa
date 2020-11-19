@@ -8,9 +8,13 @@
         <mat-label>Zählerbezeichnung</mat-label>
         <input type="text" matInput placeholder="Hier die Bezeichnung eingeben..." formControlName="name">
       </mat-form-field>
+      <mat-form-field class="input">
+        <mat-label>Zählernummer</mat-label>
+        <input type="text" matInput placeholder="Hier die Zählernummer eingeben..." formControlName="readerNumber">
+      </mat-form-field>
       <mat-radio-group aria-label="Zählertyp" formControlName="meterType">
-        <mat-radio-button value="1">Einzeltarif</mat-radio-button>
-        <mat-radio-button value="2">Doppeltarif</mat-radio-button>
+        <mat-radio-button value="1" checked>Einzeltarif</mat-radio-button>
+        <mat-radio-button value="2">Doppeltarif (HT & NT)</mat-radio-button>
       </mat-radio-group>
       <button mat-flat-button color="primary" type="submit" [disabled]="meterForm.invalid">Hinzufügen</button>
     </form>
@@ -34,4 +38,12 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+<mat-card>
+  <mat-card-subtitle class="bottom">
+    HT = Hochtarif (Tagstrom) , NT = Niedertarif (Nachtstrom)
+  </mat-card-subtitle>
+</mat-card>
+
+
 

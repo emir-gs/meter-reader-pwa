@@ -1,18 +1,23 @@
 <mat-card *ngFor="let meter of meter">
   <mat-card-header>
-    <mat-card-title>{{meter.payload.doc.data().name}}</mat-card-title>
+    <mat-card-title>{{meter.payload.doc.data().name}} - {{meter.payload.doc.data().readerNumber}}
+    </mat-card-title>
+    <mat-card-subtitle>
+      <p *ngIf="meter.payload.doc.data().isDoubleTariffMeter">Doppeltarifzähler</p>
+      <p *ngIf="!meter.payload.doc.data().isDoubleTariffMeter">Einzeltarifzähler</p>
+    </mat-card-subtitle>
   </mat-card-header>
 <table mat-table [dataSource]="meter.payload.doc.data().reads" class="mat-elevation-z8">
 
   <ng-container matColumnDef="count">
-    <th mat-header-cell *matHeaderCellDef> Zählerstand </th>
+    <th mat-header-cell *matHeaderCellDef> Zählerstand (HT)</th>
     <td mat-cell *matCellDef="let element"> {{element.count}} </td>
   </ng-container>
 
 
   <ng-container matColumnDef="secondCount">
-    <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let element"> {{element.secondCount}}
+    <th mat-header-cell *matHeaderCellDef > Zählerstand NT</th>
+    <td mat-cell *matCellDef="let element" class="align-left"> {{element.secondCount}}
 
     </td>
   </ng-container>
@@ -27,6 +32,7 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 </mat-card>
+
 
 
 
